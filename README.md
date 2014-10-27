@@ -21,7 +21,7 @@ This also works when previous loader emits its own source maps.
 ```
 npm install
 npm start
-open http://localhost:8080/webpack-dev-server/bundle
+open http://localhost:8080/index.html
 ```
 
 Then edit `example/instanceA.js` and `example/ClassB.jsx`.

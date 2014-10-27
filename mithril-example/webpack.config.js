@@ -2,7 +2,10 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-	entry: ['webpack/hot/dev-server', './app'],
+	entry: [
+		'webpack-dev-server/client', 
+		'webpack/hot/dev-server',
+		'./app'],
 	// devtool: 'source-map',
 	output: {
 		path: path.join(__dirname, 'output'),

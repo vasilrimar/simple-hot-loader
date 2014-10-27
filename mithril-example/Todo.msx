@@ -39,13 +39,13 @@ todo.controller = function() {
 todo.view = function(ctrl) {
   return <div class="container">
       <h1>
-        Todo List        
+        Todo List
       </h1>
       <p>Page loaded at <strong>{pageLoaded.toLocaleTimeString()}</strong></p>
       <p>Todo Module last loaded at: <strong>{moduleLoaded.toLocaleTimeString()}</strong></p>
 
       <p class="alert alert-info">        
-        <i class="glyphicon glyphicon-info-sign" />  
+        <i class="glyphicon glyphicon-info-sign" />&nbsp;
         You can modify and hot-reload <strong>Todo.msx</strong> without triggering a full page reload!
       </p>
             

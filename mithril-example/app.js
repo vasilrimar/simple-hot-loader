@@ -1,5 +1,4 @@
-var m = require("mithril")
-  , head = require('./head')
+var m = require("mithril")  
   , todo = require('./todo');
 
 pageLoaded = new Date();
@@ -10,7 +9,6 @@ document.addEventListener('hotreload', function(){
   m.redraw();
 });
 
-m.render(document.head, head.render());
 m.module(document.body, todo);
 
 
