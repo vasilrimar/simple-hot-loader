@@ -1,0 +1,93 @@
+/**
+ * @jsx m
+ */
+var moduleLoaded = new Date();
+
+//this application only has one module: todo
+//for simplicity, we use this module to namespace the model classes
+var todo = {};
+
+
+//the Todo class has two properties
+todo.Todo = function(data) {
+    this.description = m.prop(data.description);
+    this.done = m.prop(false);    
+};
+
+//the TodoList class is a list of Todo's
+todo.TodoList = Array;
+
+//the controller uses 3 model-level entities, of which one is a custom defined class:
+//`Todo` is the central class in this application
+//`list` is merely a generic array, with standard array methods
+//`description` is a temporary storage box that holds a string
+//
+//the `add` method simply adds a new todo to the list
+todo.controller = function() {
+    this.list = new todo.TodoList();
+    this.description = m.prop("");
+
+    this.add = function(description) {
+        if (description()) {
+            this.list.push(new todo.Todo({description: description()}));
+            this.description("");
+        }
+    };
+};
+
+//here's the view
+todo.view = function(ctrl) {
+  return <div class="container">
+      <h1>
+        Todo List        
+      </h1>
+      <p>Page loaded at <strong>{pageLoaded.toLocaleTimeString()}</strong></p>
+      <p>Todo Module last loaded at: <strong>{moduleLoaded.toLocaleTimeString()}</strong></p>
+
+      <p class="alert alert-info">        
+        <i class="glyphicon glyphicon-info-sign" />  
+        You can modify and hot-reload <strong>Todo.msx</strong> without triggering a full page reload!
+      </p>
+            
+      <div class="input-group">
+        <input 
+          type="text"
+          class="form-control"
+          placeholder="What needs to be done?"
+          onchange={m.withAttr("value", ctrl.description)} 
+          value={ctrl.description()}/>        
+        <span class="input-group-btn">
+          <button class="btn" onclick={ctrl.add.bind(ctrl, ctrl.description)}>Add</button>
+        </span>
+      </div>
+      
+      { ctrl.list.length > 0 ?
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Complete?</th>
+              <th>Task</th>
+            </tr>
+          </thead>
+          <tbody>
+          {ctrl.list.map(function(task, index) {
+            return <tr>
+              <td>
+                <input
+                  type="checkbox"
+                  onclick={m.withAttr("checked", task.done)}
+                  checked={task.done()}
+                 />
+              </td>
+              <td style={{textDecoration: task.done() ? "line-through" : "none"}}>
+                {task.description()}
+              </td>
+            </tr>
+          })}
+          </tbody>
+        </table>
+      : null }
+
+    </div>  
+};
+module.exports = todo;

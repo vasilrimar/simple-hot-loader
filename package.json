@@ -4,7 +4,7 @@
   "description": "Webpack loader for live-editing simple JS classes and objects",
   "main": "index.js",
   "scripts": {
-    "start": "cd example && node ../node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot"
+    "start": "cd mithril-example && node ../node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot"
   },
   "directories": {
     "example": "example"
@@ -16,11 +16,13 @@
   "devDependencies": {
     "webpack": "~1.4.5",
     "webpack-dev-server": "~1.4.7",
-    "util-extend": "^1.0.1"
+    "util-extend": "^1.0.1",
+    "mithril": "^0.1.22",
+    "msx-loader": "^0.1.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/WinstonF/simple-hot-loader.git"
+    "url": "https://github.com/WinstonFassett/simple-hot-loader.git"
   },
   "keywords": [
     "webpack",
@@ -30,7 +32,7 @@
   "author": "Winston Fassett",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/WinstonF/simple-hot-loader/issues"
+    "url": "https://github.com/WinstonFassett/simple-hot-loader/issues"
   },
-  "homepage": "https://github.com/WinstonF/simple-hot-loader"
+  "homepage": "https://github.com/WinstonFassett/simple-hot-loader"
 }
