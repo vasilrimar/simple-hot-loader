@@ -1,36 +1,14 @@
 # react-hot-loader
 
-This is a **stable for daily use in development** implementation of [React live code editing](http://www.youtube.com/watch?v=pw4fKkyPPg8).
+This **toy project** started as an idea for live-reloading Mithril views and controllers (example coming soon).  It is a fork of https://github.com/gaearon/react-hot-loader, which is a **stable for daily use in development** implementation of [React live code editing](http://www.youtube.com/watch?v=pw4fKkyPPg8).
 
-* Get inspired by a **[demo video](https://vimeo.com/100010922).**
+This loader handles some simple cases where live-updating should be pretty trivial.  The main use case is updating prototypes, and I'm also toying with updating objects and functions using wrappers.  
 
-* Read **[technical explanation and integration walkthrough](http://gaearon.github.io/react-hot-loader/).**
-
-* For CoffeeScript, check out **[coffee-react-quickstart](https://github.com/KyleAMathews/coffee-react-quickstart)**.
-
->Hate reading? Use **[react-hot-boilerplate](https://github.com/gaearon/react-hot-boilerplate)** for your next ReactJS project.
-
-## Installation
-
-`npm install react-hot-loader`
-
-## Usage
-
-#### **[Read the walkthrough!](http://gaearon.github.io/react-hot-loader/#integration)**
-
-Seriously! It covers:
-
-* porting a project to use Webpack;
-* enabling Hot Module Replacement;
-* integrating react-hot-loader.
-
-Also check out **[coffee-react-quickstart](https://github.com/KyleAMathews/coffee-react-quickstart)** for an integration example with Gulp and CoffeeScript.
+This loader should allow many elements of the application to be modified while running with minimal reloads of additional components or the entire page.  Beyond that, you'll usually want to rerender some bits if you modified a view.  Currently that is handled via a simple custom "hotreload" event on the document.
 
 ### Exceptions
 
-Hot reload is disabled for modules that contain no `React.createClass` calls and/or don't export a valid React class. For example, in the sample project, `app.jsx` doesn't get live updates because it is assumed to have side-effects.
-
-Several components in one file will work as long as their `displayName`s are different.
+As opposed to react-hot-loader, this loader will process any JS, but trust me, you don't want it on all your JS, particularly node modules and itself.  Best to map it to a subset of your JS using a loader matching expression such as the one in example/webpack.config.js.
 
 ### Source Maps
 
@@ -46,63 +24,20 @@ npm start
 open http://localhost:8080/webpack-dev-server/bundle
 ```
 
-Then edit `example/a.jsx` and `example/b.jsx`.
+Then edit `example/instanceA.js` and `example/ClassB.jsx`.
 Your changes should be displayed live, without unmounting components or destroying their state.
-
-![](http://f.cl.ly/items/0d0P3u2T0f2O163K3m1B/2014-07-14%2014_09_02.gif)
-
-![](http://f.cl.ly/items/3T3u3N1d2U30380Z2k2D/2014-07-14%2014_05_49.gif)
 
 ## Implementation Notes
 
-Currently, it keeps a list of mounted instances and updates their prototypes when an update comes in.
-
-A better approach may be to make monkeypatch `createClass` to return a proxy object [as suggested by Pete Hunt](https://github.com/webpack/webpack/issues/341#issuecomment-48372300):
-
->The problem is that references to component descriptors could be stored in any number of places. What we could do is wrap all components in "proxy" components which look up the "real" component in some mapping
+Simply keep track of the original module.exports and employ a few merge strategies to update it.  If there is a prototype property, it is merged using util-extend.  Otherwise the original module.exports is updated with properties from the new one.  After this, a custom 'hotreload' event is triggered on the document.
 
 ## Changelog
 
-#### 0.5.0
-
-* Adds source map support, contributed by [Jake Riesterer](https://github.com/jRiest)
-
-#### 0.4.5
-
-* Collapse all hot loader code in one line so it doesn't obscure beginning of file.
-
-#### 0.4.4
-
-* Errors occuring in module definition (such as `ReferenceError`) should not disable further reloading (fixes **[#29](https://github.com/gaearon/react-hot-loader/issues/29)**)
-
-#### 0.4.3
-
-* Support lowercase `react` reference name and usage with ES6 classes (`createClass(MyComponent.prototype)`) via **[#27](https://github.com/gaearon/react-hot-loader/issues/27)**
-
-#### 0.4.2
-
-* Catch errors in modules and log them instead of reloading (fixes **[#21](https://github.com/gaearon/react-hot-loader/issues/21)**)
-
-#### 0.4.1
-
-* Use more precise [`React.createClass` regex](https://github.com/gaearon/react-hot-loader/commit/f71c6785131adcc85b91789da0d0a0b9f1a9713f) to avoid matching own code when hot loader is applied to all JS files.
-
-#### 0.4.0
-
-* Ignore files that contain no `createClass` calls (fixes **[#17](https://github.com/gaearon/react-hot-loader/issues/17)**)
-* Remove the need for pitch loader (fixes **[#19](https://github.com/gaearon/react-hot-loader/issues/19)**)
-* Improve performance by only using one loader instead of two
-* Now that performance is acceptable, remove desktop notifications and `notify` option
-* It is now recommended that you use `devtool: 'eval'` because it's much faster and has no downsides anymore
-
-#### 0.3.1
-
-* Avoid warnings on old browsers with missing `Notification` API
-* Errors don't cause page reload anymore
-
-#### 0.3.0
-
-* Use React 0.11
+#### 0.0.0 (so far)
+* forked https://github.com/gaearon/react-hot-loader
+* removed JSX dependencies
+* reimplemented component updater
+* support for merging objects and prototypes
 
 ## License
 

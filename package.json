@@ -1,7 +1,7 @@
 {
-  "name": "react-hot-loader",
-  "version": "0.5.0",
-  "description": "Webpack loader that enables live-editing React components without unmounting or losing their state",
+  "name": "simple-hot-loader",
+  "version": "0.1.0",
+  "description": "Webpack loader for live-editing simple JS classes and objects",
   "main": "index.js",
   "scripts": {
     "start": "cd example && node ../node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot"
@@ -14,25 +14,23 @@
     "source-map": "0.1.40"
   },
   "devDependencies": {
-    "jsx-loader": "0.11.0",
-    "react": "0.11.1",
     "webpack": "~1.4.5",
-    "webpack-dev-server": "~1.4.7"
+    "webpack-dev-server": "~1.4.7",
+    "util-extend": "^1.0.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gaearon/react-hot-loader.git"
+    "url": "https://github.com/WinstonF/simple-hot-loader.git"
   },
   "keywords": [
-    "react",
     "webpack",
     "hmr",
     "livereload"
   ],
-  "author": "Dan Abramov",
+  "author": "Winston Fassett",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gaearon/react-hot-loader/issues"
+    "url": "https://github.com/WinstonF/simple-hot-loader/issues"
   },
-  "homepage": "https://github.com/gaearon/react-hot-loader"
+  "homepage": "https://github.com/WinstonF/simple-hot-loader"
 }

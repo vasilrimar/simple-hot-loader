@@ -12,11 +12,11 @@ module.exports = {
 		modulesDirectories: ['..', 'node_modules']
 	},
 	resolve: {
-		extensions: ['', '.jsx', '.js']
+		extensions: ['', '.js']
 	},
 	module: {
 		loaders: [
-			{ test: /\.jsx$/, loaders: ['react-hot', 'jsx'] }
+			{ test: /example\\.*\.js$/, loaders: ['simple-hot'] }
 		]
 	}
 };
