@@ -1,6 +1,6 @@
 # simple-hot-loader
 
-This **toy project** started as an idea for live-reloading Mithril views and controllers (example coming soon).  It is a fork of https://github.com/gaearon/react-hot-loader, which is a **stable for daily use in development** implementation of [React live code editing](http://www.youtube.com/watch?v=pw4fKkyPPg8).
+This **toy project** started as an idea for live-reloading Mithril views and controllers (see mithril-example).  It is a fork of https://github.com/gaearon/react-hot-loader, which is a **stable for daily use in development** implementation of [React live code editing](http://www.youtube.com/watch?v=pw4fKkyPPg8).
 
 This loader handles some simple cases where live-updating should be pretty trivial.  The main use case is updating prototypes, and I'm also toying with updating objects and functions using wrappers.  
 
