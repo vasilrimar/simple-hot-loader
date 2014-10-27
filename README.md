@@ -1,4 +1,4 @@
-# react-hot-loader
+# simple-hot-loader
 
 This **toy project** started as an idea for live-reloading Mithril views and controllers (example coming soon).  It is a fork of https://github.com/gaearon/react-hot-loader, which is a **stable for daily use in development** implementation of [React live code editing](http://www.youtube.com/watch?v=pw4fKkyPPg8).
 
